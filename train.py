@@ -30,6 +30,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 os.makedirs("models", exist_ok=True)
 
 mlflow.set_experiment("animal-linear-reg")
+mlflow.set_tracking_uri("./maruns")
 # Train + MLflow tracking
 with mlflow.start_run():
     model = LinearRegression()
