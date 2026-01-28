@@ -10,7 +10,7 @@ pipeline {
 
         stage('Setup Virtual Env') {
             steps {
-                sh pwd
+                sh "pwd"
                 sh '''
                 python3 -m venv .venv
                 . .venv/bin/activate
