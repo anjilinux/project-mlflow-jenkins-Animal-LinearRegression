@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.metrics import mean_squared_error, r2_score
 
 model = joblib.load("models/model.pkl")
-data = pd.read_csv("data/processed/clean_data.csv")
+data = pd.read_csv("clean_data.csv")
 
 X = data.drop("target", axis=1)
 y = data["target"]
