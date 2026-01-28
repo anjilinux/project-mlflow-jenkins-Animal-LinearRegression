@@ -10,20 +10,24 @@ pipeline {
 
         stage('Setup Virtual Env') {
             steps {
+                sh pwd
                 sh '''
                 python3 -m venv .venv
                 . .venv/bin/activate
                 pip install -r requirements.txt
                 '''
+                sh "pwd"
             }
         }
 
         stage('Train Model') {
             steps {
+                sh "pwd"
                 sh '''
                 . .venv/bin/activate
                 python train.py
                 '''
+                sh "pwd"
             }
         }
 
