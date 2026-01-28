@@ -29,7 +29,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Ensure model directory exists
 os.makedirs("models", exist_ok=True)
 
-mlflow.set_experiment("animal_population_linear_regression")
+mlflow.set_experiment("animal_population_linear_regression_22")
 mlflow.set_tracking_uri("http://localhost:5555")
 # Train + MLflow tracking
 with mlflow.start_run():
