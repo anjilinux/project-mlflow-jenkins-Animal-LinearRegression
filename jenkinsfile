@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourrepo/forest-animal-mlops.git'
+                git 'https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git'
             }
         }
 
