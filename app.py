@@ -21,4 +21,16 @@ def predict():
     })
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=5005)
+
+
+
+
+#################  output===
+# (base) bny@bny:~/git-flow/project-3$ curl -X POST http://localhost:5001/predict \
+#      -H "Content-Type: application/json" \
+#      -d '{"features":[120,22.5,1100,0.78]}'
+
+
+#        {"prediction":[340.2775138756957]}
+    

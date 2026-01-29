@@ -48,18 +48,44 @@ pipeline {
                 '''
             }
         }
-        stage("deploy on flask-api"){
-            steps{
-                sh '''
-                . .venv/bin/activate
-                python app.py
+        // stage("deploy on flask-api"){
+        //     steps{
+        //         sh '''
+        //         . .venv/bin/activate
+        //         python app.py
 
+        //         '''
+        //     }
+        // }
+    
+        stage('Run Flask App (2 minutes)') {
+            steps {
+                sh '''
+                echo "Starting Flask app in background..."
+
+                # Activate virtualenv if needed
+                . .venv/bin/activate
+
+                # Run Flask in background
+                nohup python app.py > flask.log 2>&1 &
+
+                sleep 10
+                curl http://127.0.0.1:5001/health
+                
+                # Save PID
+                echo $! > flask.pid
+
+                echo "Flask PID: $(cat flask.pid)"
+
+                # Wait for 2 minutes
+                sleep 120
+
+                echo "Stopping Flask app..."
+                kill $(cat flask.pid) || true
                 '''
             }
         }
-    
-    
-    
+
     }
     // post {
     //     always {
