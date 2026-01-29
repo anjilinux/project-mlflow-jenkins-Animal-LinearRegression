@@ -58,22 +58,31 @@ pipeline {
         //     }
         // }
     
-        stage('Deploy & Test Flask') {
+       stage('Deploy & Test Flask') {
             steps {
                 sh '''
+                set -e
+
                 echo "Starting Flask app in background..."
                 nohup python app.py > flask.log 2>&1 &
                 FLASK_PID=$!
                 echo "Flask PID: $FLASK_PID"
 
-                # Give Flask time to start
+                # Wait for Flask to bind
                 sleep 10
+
+                # Check if Flask is still running
+                if ! ps -p $FLASK_PID > /dev/null; then
+                    echo "Flask crashed. Logs:"
+                    cat flask.log
+                    exit 1
+                fi
 
                 echo "Health check..."
                 curl -f http://127.0.0.1:5001/health
 
                 echo "Prediction test..."
-                curl -X POST http://127.0.0.1:5001/predict \
+                curl -f -X POST http://127.0.0.1:5001/predict \
                     -H "Content-Type: application/json" \
                     -d '{"features":[120,22.5,1100,0.78]}'
 
@@ -85,6 +94,7 @@ pipeline {
                 '''
             }
         }
+
 
 
     }
