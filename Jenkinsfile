@@ -76,9 +76,16 @@ pipeline {
 
                 echo "Flask PID: $(cat flask.pid)"
 
+                http://127.0.0.1:5001/health
+
+                curl -X POST http://127.0.0.1:5001/predict \
+                      -H "Content-Type: application/json" \
+                       -d '{"features":[1,2,3,4]}'
+
+
                 # Wait for 2 minutes
                 sleep 60
-                curl http://127.0.0.1:5005/health
+               
 
                 echo "Stopping Flask app..."
                 kill $(cat flask.pid) || true
