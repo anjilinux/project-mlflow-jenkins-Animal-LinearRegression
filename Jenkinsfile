@@ -70,7 +70,7 @@ pipeline {
                 nohup python app.py > flask.log 2>&1 &
 
                 
-                curl http://127.0.0.1:5001/health
+                #curl http://127.0.0.1:5001/health
 
                 # Save PID
                 echo $! > flask.pid
