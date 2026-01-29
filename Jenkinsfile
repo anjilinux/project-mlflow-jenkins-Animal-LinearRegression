@@ -58,42 +58,51 @@ pipeline {
         //     }
         // }
     
-       stage('Deploy & Test Flask') {
-            steps {
-                sh '''
-                set -e
+    stage('Deploy & Test Flask') {
+        steps {
+            sh '''
+            set -e
 
-                echo "Starting Flask app in background..."
-                nohup python app.py > flask.log 2>&1 &
-                FLASK_PID=$!
-                echo "Flask PID: $FLASK_PID"
+            echo "Activating virtual environment..."
+            . .venv/bin/activate
 
-                # Wait for Flask to bind
-                sleep 10
+            echo "Starting Flask app in background..."
+            nohup python app.py > flask.log 2>&1 &
+            FLASK_PID=$!
+            echo "Flask PID: $FLASK_PID"
 
-                # Check if Flask is still running
-                if ! ps -p $FLASK_PID > /dev/null; then
-                    echo "Flask crashed. Logs:"
-                    cat flask.log
-                    exit 1
-                fi
+            sleep 10
 
-                echo "Health check..."
-                curl -f http://127.0.0.1:5001/health
+            if ! ps -p $FLASK_PID > /dev/null; then
+                echo "Flask crashed. Logs:"
+                cat flask.log
+                exit 1
+            fi
 
-                echo "Prediction test..."
-                curl -f -X POST http://127.0.0.1:5001/predict \
-                    -H "Content-Type: application/json" \
-                    -d '{"features":[120,22.5,1100,0.78]}'
+            echo "Health check..."
+            curl -f http://127.0.0.1:5001/health
 
-                echo "Keeping app alive for 2 minutes..."
-                sleep 120
+            echo "Prediction test..."
+            curl -f -X POST http://127.0.0.1:5001/predict \
+                -H "Content-Type: application/json" \
+                -d '{"features":[120,22.5,1100,0.78]}'
 
-                echo "Stopping Flask..."
-                kill $FLASK_PID
-                '''
-            }
+            echo "Keeping app alive for 2 minutes..."
+            sleep 120
+
+            echo "Stopping Flask..."
+            kill $FLASK_PID
+            '''
         }
+    }
+
+
+
+
+
+
+
+
 
 
 
