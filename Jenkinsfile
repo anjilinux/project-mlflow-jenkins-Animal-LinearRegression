@@ -58,44 +58,34 @@ pipeline {
         //     }
         // }
     
-        stage('Run Flask App (2 minutes)') {
+        stage('Deploy & Test Flask') {
             steps {
                 sh '''
                 echo "Starting Flask app in background..."
-
-                # Activate virtualenv if needed
-                . .venv/bin/activate
-
-                # Run Flask in background
                 nohup python app.py > flask.log 2>&1 &
+                FLASK_PID=$!
+                echo "Flask PID: $FLASK_PID"
 
-                
-                
-                # Save PID
-                echo $! > flask.pid
+                # Give Flask time to start
+                sleep 10
 
-                echo "Flask PID: $(cat flask.pid)"
+                echo "Health check..."
+                curl -f http://127.0.0.1:5001/health
 
-
+                echo "Prediction test..."
                 curl -X POST http://127.0.0.1:5001/predict \
-                      -H "Content-Type: application/json" \
-                       -d '{"features":[1,2,3,4]}'
+                    -H "Content-Type: application/json" \
+                    -d '{"features":[120,22.5,1100,0.78]}'
 
-                
-                #curl -X GET http://127.0.0.1:5001/health
-                #curl http://127.0.0.1:5001/health
+                echo "Keeping app alive for 2 minutes..."
+                sleep 120
 
-                #curl -f http://127.0.0.1:5001/health
-
-                # Wait for 2 minutes
-                sleep 60
-               
-
-                echo "Stopping Flask app..."
-                kill $(cat flask.pid) || true
+                echo "Stopping Flask..."
+                kill $FLASK_PID
                 '''
             }
         }
+
 
     }
     // post {
