@@ -70,8 +70,7 @@ pipeline {
                 nohup python app.py > flask.log 2>&1 &
 
                 
-                #curl http://127.0.0.1:5005/health
-
+                
                 # Save PID
                 echo $! > flask.pid
 
@@ -79,6 +78,7 @@ pipeline {
 
                 # Wait for 2 minutes
                 sleep 60
+                curl http://127.0.0.1:5005/health
 
                 echo "Stopping Flask app..."
                 kill $(cat flask.pid) || true
