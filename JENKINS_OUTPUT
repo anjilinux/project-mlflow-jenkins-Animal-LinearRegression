@@ -1,0 +1,218 @@
+Started by user anjireddy-jenkins
+
+Obtained Jenkinsfile from git https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in /var/lib/jenkins/workspace/animal-ln-reg
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/animal-ln-reg/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git # timeout=10
+Fetching upstream changes from https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 0ab078ca8977aa14ace18dfe31f61e3e5fcbeb9f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0ab078ca8977aa14ace18dfe31f61e3e5fcbeb9f # timeout=10
+Commit message: "added the data"
+ > git rev-list --no-walk 81fbbf7a39468137f9d9355120fb715ccb42aed4 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/animal-ln-reg/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git # timeout=10
+Fetching upstream changes from https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/anjilinux/project-mlflow-jenkins-Animal-LinearRegression.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 0ab078ca8977aa14ace18dfe31f61e3e5fcbeb9f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0ab078ca8977aa14ace18dfe31f61e3e5fcbeb9f # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 0ab078ca8977aa14ace18dfe31f61e3e5fcbeb9f # timeout=10
+Commit message: "added the data"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Setup Virtual Env)
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/animal-ln-reg
+[Pipeline] sh
++ python3 -m venv .venv
+
++ . .venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/var/lib/jenkins/workspace/animal-ln-reg/.venv
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/animal-ln-reg/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(.venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(.venv) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ pip install -r requirements.txt
+Requirement already satisfied: pandas in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2.3.3)
+Requirement already satisfied: numpy in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (2.4.1)
+ already satisfied: anyio<5,>=3.6.2 in ./.venv/lib/python3.12/site-packages (from starlette<0.51.0,>=0.40.0->fastapi<1->mlflow-skinny==3.8.1->mlflow->-r requirements.txt (line 4)) (4.12.1)
+Requirement already satisfied: pyasn1<0.7.0,>=0.6.1 in ./.venv/lib/python3.12/site-packages (from pyasn1-modules>=0.2.1->google-auth~=2.0->databricks-sdk<1,>=0.20.0->mlflow-skinny==3.8.1->mlflow->-r requirements.txt (line 4)) (0.6.2)
+
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/animal-ln-reg
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Train Model)
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/animal-ln-reg
+[Pipeline] sh
++ . .venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/var/lib/jenkins/workspace/animal-ln-reg/.venv
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/animal-ln-reg/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(.venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(.venv) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ python train.py
+
+/var/lib/jenkins/workspace/animal-ln-reg/.venv/lib/python3.12/site-packages/mlflow/tracking/_tracking_service/utils.py:178: FutureWarning: The filesystem tracking backend (e.g., './mlruns') will be deprecated in February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://github.com/mlflow/mlflow/issues/18534 for more details and migration guidance. For migrating existing data, https://github.com/mlflow/mlflow-export-import can be used.
+  return FileStore(store_uri, store_uri)
+2026/01/29 09:31:46 INFO mlflow.tracking.fluent: Experiment with name 'animal_population_linear_regression_22' does not exist. Creating a new experiment.
+2026/01/29 09:31:46 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/animal-ln-reg
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Evaluate Model)
+[Pipeline] sh
++ . .venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/var/lib/jenkins/workspace/animal-ln-reg/.venv
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/animal-ln-reg/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(.venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(.venv) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ python evaluate.py
+
+MSE: 76.81736464444036
+R2 Score: 0.9910312475604857
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test Model)
+[Pipeline] sh
++ . .venv/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/var/lib/jenkins/workspace/animal-ln-reg/.venv
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/var/lib/jenkins/workspace/animal-ln-reg/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(.venv) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(.venv) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ pytest test_model.py
+
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0
+rootdir: /var/lib/jenkins/workspace/animal-ln-reg
+plugins: anyio-4.12.1
+collected 1 item
+
+=============================== warnings summary ===============================
+test_model.py::test_model_prediction
+  /var/lib/jenkins/workspace/animal-ln-reg/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 1 passed, 1 warning in 1.17s =========================
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

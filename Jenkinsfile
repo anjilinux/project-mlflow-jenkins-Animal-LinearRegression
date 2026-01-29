@@ -48,15 +48,23 @@ pipeline {
                 '''
             }
         }
+        stage("deploy on flask-api"){
+            steps{
+                sh '''
+                . .venv/bin/activate
+                python flask.py
+
+                '''
+            }
+        }
+    
+    
+    
     }
     // post {
     //     always {
     //         cleanWs()
     //     }
     // }
-
-
-
-
 
 }

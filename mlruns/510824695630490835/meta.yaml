@@ -1,0 +1,6 @@
+artifact_location: file:///var/lib/jenkins/workspace/animal-ln-reg/mlruns/510824695630490835
+creation_time: 1769659306601
+experiment_id: '510824695630490835'
+last_update_time: 1769659306601
+lifecycle_stage: active
+name: animal_population_linear_regression_22

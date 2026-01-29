@@ -1,0 +1,14 @@
+artifact_uri: file:///var/lib/jenkins/workspace/animal-ln-reg/mlruns/510824695630490835/b507436288a6415d833f8a285073f3b8/artifacts
+end_time: 1769659309081
+entry_point_name: ''
+experiment_id: '510824695630490835'
+lifecycle_stage: active
+run_id: b507436288a6415d833f8a285073f3b8
+run_name: suave-duck-534
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1769659306642
+status: 3
+tags: []
+user_id: jenkins

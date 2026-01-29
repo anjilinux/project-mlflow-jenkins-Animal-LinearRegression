@@ -1,0 +1,10 @@
+artifact_location: file:///var/lib/jenkins/workspace/animal-ln-reg/mlruns/510824695630490835/models/m-c330f238c4cf48f89e01e60ff32d0141/artifacts
+creation_timestamp: 1769659306653
+experiment_id: '510824695630490835'
+last_updated_timestamp: 1769659309079
+model_id: m-c330f238c4cf48f89e01e60ff32d0141
+model_type: null
+name: model
+source_run_id: b507436288a6415d833f8a285073f3b8
+status: 2
+status_message: null

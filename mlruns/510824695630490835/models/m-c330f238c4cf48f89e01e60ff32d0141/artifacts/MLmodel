@@ -1,0 +1,22 @@
+artifact_path: file:///var/lib/jenkins/workspace/animal-ln-reg/mlruns/510824695630490835/models/m-c330f238c4cf48f89e01e60ff32d0141/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 3.8.1
+model_id: m-c330f238c4cf48f89e01e60ff32d0141
+model_size_bytes: 649
+model_uuid: m-c330f238c4cf48f89e01e60ff32d0141
+prompts: null
+run_id: b507436288a6415d833f8a285073f3b8
+utc_time_created: '2026-01-29 04:01:46.656762'
