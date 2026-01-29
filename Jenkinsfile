@@ -48,30 +48,21 @@ pipeline {
                 '''
             }
         }
-        // stage("deploy on flask-api"){
-        //     steps{
-        //         sh '''
-        //         . .venv/bin/activate
-        //         python app.py
-
-        //         '''
-        //     }
-        // }
     
     stage('Deploy & Test Flask') {
         steps {
             sh '''
             set -e
 
-            echo "Activating virtual environment..."
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%%Activating virtual environment...#########@@@$$$$$$$$$$$$$$$"
             . .venv/bin/activate
 
-            echo "Starting Flask app in background..."
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%% Starting Flask app in background...#################@@@@@@@@@@@@@@@@@%%%%%%%%A"
             nohup python app.py > flask.log 2>&1 &
             FLASK_PID=$!
-            echo "Flask PID: $FLASK_PID"
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%% Flask PID: $FLASK_PID #################@@@@@@@@@@@@@@@@@%%%%%%%%A"
 
-            sleep 10
+            sleep 5
 
             if ! ps -p $FLASK_PID > /dev/null; then
                 echo "Flask crashed. Logs:"
@@ -79,31 +70,22 @@ pipeline {
                 exit 1
             fi
 
-            echo "Health check..."
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%% Health check...  #################@@@@@@@@@@@@@@@@@%%%%%%%%"
             curl -f http://127.0.0.1:5001/health
 
-            echo "Prediction test..."
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%%A   Prediction test..."#################@@@@@@@@@@@@@@@@@%%%%%%%%A 
             curl -f -X POST http://127.0.0.1:5001/predict \
                 -H "Content-Type: application/json" \
                 -d '{"features":[120,22.5,1100,0.78]}'
 
-            echo "Keeping app alive for 2 minutes..."
-            sleep 120
+            echo "#################@@@@@@@@@@@@@@@@@%%%%%%%%A Keeping app alive for 2 minutes... #################@@@@@@@@@@@@@@@@@%%%%%%%%A"
+            sleep 10
 
             echo "Stopping Flask..."
             kill $FLASK_PID
             '''
         }
     }
-
-
-
-
-
-
-
-
-
 
 
     }
