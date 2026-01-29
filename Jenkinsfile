@@ -52,7 +52,7 @@ pipeline {
             steps{
                 sh '''
                 . .venv/bin/activate
-                python flask.py
+                python app.py
 
                 '''
             }
