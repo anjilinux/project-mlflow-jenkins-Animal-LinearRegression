@@ -82,6 +82,11 @@ pipeline {
                       -H "Content-Type: application/json" \
                        -d '{"features":[1,2,3,4]}'
 
+                
+                curl -X GET http://127.0.0.1:5001/health
+                curl http://127.0.0.1:5001/health
+
+                curl -f http://127.0.0.1:5001/health
 
                 # Wait for 2 minutes
                 sleep 60
